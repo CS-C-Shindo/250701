@@ -1,12 +1,11 @@
-/* 基本設定とフォントの読み込み */
+/* 基本設定とフォント */
 :root {
-    --primary-color: #0d47a1; /* 深い青 */
-    --green-accent: #28a745;  /* 強調用の緑 */
+    --primary-color: #005A9C; /* メインの青 */
+    --accent-color: #28a745;  /* 強調用の緑 */
+    --bg-color: #f0f2f5;      /* 背景色 */
+    --card-bg: #ffffff;       /* カード背景色 */
     --text-color: #333333;
-    --bg-color: #f4f6f8;
-    --white: #ffffff;
-    --light-gray: #f8f9fa;
-    --border-color: #e0e0e0;
+    --border-color: #e9ecef;
 }
 
 body {
@@ -14,165 +13,179 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 0;
-    padding: 2rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+    padding: 2.5rem 1rem;
 }
 
-/* A4用紙のようなコンテナ */
 .page-container {
-    background-color: var(--white);
-    width: 90%;
-    max-width: 820px;
-    padding: 40px 50px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    border-radius: 6px;
-    box-sizing: border-box;
+    max-width: 850px;
+    margin: 0 auto;
 }
 
 /* ヘッダー */
 header {
     text-align: center;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 2.5rem;
 }
 
 header h1 {
     font-size: 2.2rem;
     font-weight: 900;
     color: var(--primary-color);
-    line-height: 1.4;
-    margin-bottom: 8px;
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0;
 }
-header .subtitle {
+
+header p {
     font-size: 1rem;
     color: #666;
+    margin: 0;
 }
 
-/* 各セクションの共通スタイル */
-section {
-    margin-bottom: 35px;
+/* カード共通スタイル */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2.5rem;
+    overflow: hidden;
 }
 
-section h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
+.card-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--border-color);
-    margin-bottom: 20px;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    border-bottom: 1px solid var(--border-color);
 }
-section h2 .icon { font-size: 1.8rem; }
 
-.content-box {
-    background: var(--light-gray);
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
 }
-.content-box p {
-    margin: 0 0 1em 0;
-    line-height: 1.7;
-}
-.content-box p:last-child { margin-bottom: 0; }
-.content-box ul {
-    margin: 1em 0 0 0;
-    padding-left: 20px;
-}
-.content-box li { line-height: 1.7; margin-bottom: 0.5em; }
+.icon-circle svg { width: 24px; height: 24px; }
 
+/* 各セクションのアイコン色 */
+.icon-circle.problem { background-color: #ffc107; } /* 黄 */
+.icon-circle.analysis { background-color: #17a2b8; } /* 青緑 */
+.icon-circle.result { background-color: var(--accent-color); } /* 緑 */
+
+.card-body {
+    padding: 1.5rem 2rem;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+.card-body p { margin: 0 0 1em 0; }
+.card-body p:last-child { margin-bottom: 0; }
+
+.point-list, .action-list { padding-left: 20px; }
+.point-list li { margin-bottom: 0.5em; }
+.action-list { list-style: '✅ '; }
 .action-title { font-weight: bold; margin-top: 1.5em !important; }
 
-/* === 結果セクション (新デザイン) === */
-.results-grid {
+
+/* 結果セクション */
+.results-container {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
-
-.result-card {
-    background-color: var(--white);
-    padding: 25px 30px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    border-left: 10px solid var(--green-accent);
-}
-
-.result-label {
-    margin: 0 0 15px 0;
-    font-size: 1.1rem;
-    color: #555;
-    font-weight: bold;
-}
-
-.result-main {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 10px;
+.result-item {
+    flex: 1;
+    min-width: 250px;
     text-align: center;
 }
-
-.result-text {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--text-color);
+.result-item.large {
+    flex: 2;
 }
+.result-item h3 {
+    font-size: 1.2rem;
+    margin: 0 0 1rem 0;
+    color: #555;
+}
+.result-value-box {
+    background-color: #f8f9fa;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+}
+.result-value-box p { font-weight: 900; margin: 0; }
+.before-value { font-size: 2rem; color: #6c757d; }
+.arrow { font-size: 2rem; color: #6c757d; margin: 0.25rem 0 !important; }
+.after-value { font-size: 3rem; color: var(--accent-color); }
 
-.result-number {
+.main-number {
     font-size: 5rem;
     font-weight: 900;
-    color: var(--green-accent);
+    color: var(--accent-color);
     line-height: 1;
+    margin-bottom: 1.5rem !important;
 }
+.main-number .sub-text { font-size: 1.5rem; }
 
-.result-number .unit {
-    font-size: 2.5rem;
+/* グラフ */
+.chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 150px;
+    border-bottom: 2px solid #ddd;
+    padding: 0 1rem;
+}
+.chart-bar {
+    width: 25%;
+    background-color: #007bff;
+    color: #fff;
     font-weight: bold;
-    color: var(--green-accent);
-}
-
-.result-caption {
-    text-align: right;
-    margin: 10px 0 0 0;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    padding-top: 0.5rem;
     font-size: 0.9rem;
-    color: #777;
+    transition: height 0.5s ease-out;
+}
+.chart-bar span {
+    display: block;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    font-size: 0.9rem;
 }
 
 
-/* 説明ボックス */
+/* 補足情報 */
 .explanation-box {
-    background-color: var(--light-gray);
-    padding: 15px 20px;
-    margin-top: -10px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    border: 1px dashed var(--border-color);
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
 }
 .explanation-box h4 {
     font-size: 1rem;
     font-weight: bold;
-    margin: 0 0 10px 0;
+    margin: 0 0 0.5rem 0;
 }
 .explanation-box p {
     font-size: 0.9rem;
     line-height: 1.7;
     margin: 0;
+    color: #555;
 }
 
-/* スマートフォン用の調整 */
+/* レスポンシブ対応 */
 @media (max-width: 768px) {
-    body { padding: 0; }
-    .page-container { width: 100%; border-radius: 0; padding: 25px 20px; }
-    header h1 { font-size: 1.6rem; }
-    section h2 { font-size: 1.3rem; }
-
-    .result-text { font-size: 1.8rem; }
-    .result-number { font-size: 3.5rem; }
-    .result-number .unit { font-size: 1.8rem; }
+    body { padding: 1.5rem 0.5rem; }
+    header h1 { font-size: 1.8rem; }
+    .card-header { font-size: 1.25rem; }
+    .card-body { padding: 1rem 1.25rem; }
+    .results-container { flex-direction: column; }
+    .result-item { min-width: auto; }
 }
