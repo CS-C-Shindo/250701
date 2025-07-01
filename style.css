@@ -1,10 +1,12 @@
 /* 基本設定とフォントの読み込み */
 :root {
-    --primary-color: #005A9C; /* 濃い青 */
-    --accent-color: #4CAF50;  /* 緑 */
+    --primary-color: #0d47a1; /* 深い青 */
+    --green-accent: #28a745;  /* 強調用の緑 */
     --text-color: #333333;
-    --bg-color: #f0f2f5;
+    --bg-color: #f4f6f8;
     --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --border-color: #e0e0e0;
 }
 
 body {
@@ -15,187 +17,162 @@ body {
     padding: 2rem 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
-}
-
-h1, h2, h3 {
-    margin: 0;
-    font-weight: 700;
 }
 
 /* A4用紙のようなコンテナ */
 .page-container {
     background-color: var(--white);
     width: 90%;
-    max-width: 800px; /* A4の幅に近いサイズ */
-    min-height: 1130px; /* A4の高さに近いサイズ */
-    padding: 50px 60px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 8px;
+    max-width: 820px;
+    padding: 40px 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-radius: 6px;
     box-sizing: border-box;
 }
 
 /* ヘッダー */
 header {
     text-align: center;
-    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 header h1 {
-    font-size: 2.5rem; /* 大きな文字 */
+    font-size: 2.2rem;
     font-weight: 900;
     color: var(--primary-color);
     line-height: 1.4;
+    margin-bottom: 8px;
+}
+header .subtitle {
+    font-size: 1rem;
+    color: #666;
 }
 
-/* 強調したい指標セクション */
-.metrics {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-bottom: 50px;
+/* 各セクションの共通スタイル */
+section {
+    margin-bottom: 35px;
 }
 
-.metric-card {
+section h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 25px;
-    background-color: #f8f9fa;
-    padding: 25px;
-    border-radius: 10px;
-    border-left: 8px solid var(--accent-color);
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 20px;
+}
+section h2 .icon { font-size: 1.8rem; }
+
+.content-box {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+.content-box p {
+    margin: 0 0 1em 0;
+    line-height: 1.7;
+}
+.content-box p:last-child { margin-bottom: 0; }
+.content-box ul {
+    margin: 1em 0 0 0;
+    padding-left: 20px;
+}
+.content-box li { line-height: 1.7; margin-bottom: 0.5em; }
+
+.action-title { font-weight: bold; margin-top: 1.5em !important; }
+
+/* === 結果セクション (新デザイン) === */
+.results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.metric-icon {
-    width: 70px;
-    height: 70px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-}
-.metric-icon svg {
-    width: 40px;
-    height: 40px;
-    color: var(--white);
+.result-card {
+    background-color: var(--white);
+    padding: 25px 30px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-left: 10px solid var(--green-accent);
 }
 
-.metric-icon.rocket { background-color: #007BFF; } /* 青 */
-.metric-icon.users { background-color: #28a745; } /* 緑 */
-
-.metric-text p {
-    margin: 0 0 5px 0;
+.result-label {
+    margin: 0 0 15px 0;
     font-size: 1.1rem;
+    color: #555;
+    font-weight: bold;
 }
 
-.metric-text h2 {
-    font-size: 2.8rem; /* 大きな文字 */
-    font-weight: 900;
-    color: var(--text-color);
+.result-main {
     display: flex;
     align-items: baseline;
+    justify-content: center;
     gap: 10px;
-}
-
-.metric-text h2 span {
-    color: var(--accent-color);
-    font-size: 3.5rem; /* さらに大きな数字 */
-}
-
-/* 訪問者の質セクション */
-.visitor-quality {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.visitor-quality h2 {
-    font-size: 1.8rem;
-    margin-bottom: 40px;
-}
-
-.visitor-types {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
     text-align: center;
 }
 
-.type-card {
-    flex: 1;
-    padding: 20px;
+.result-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-color);
 }
 
-.type-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 15px auto;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-}
-.type-icon svg { width: 40px; height: 40px; color: var(--white); }
-
-.type-icon.exit { background-color: #dc3545; } /* 赤 */
-.type-icon.neutral { background-color: #ffc107; } /* 黄 */
-.type-icon.interested { background-color: #e83e8c; } /* ピンク */
-
-.type-card h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
+.result-number {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--green-accent);
+    line-height: 1;
 }
 
-/* フッター */
-footer {
-    text-align: center;
-    margin-top: 60px;
-    padding: 25px;
-    background-color: var(--primary-color);
+.result-number .unit {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--green-accent);
+}
+
+.result-caption {
+    text-align: right;
+    margin: 10px 0 0 0;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+
+/* 説明ボックス */
+.explanation-box {
+    background-color: var(--light-gray);
+    padding: 15px 20px;
+    margin-top: -10px;
+    margin-bottom: 30px;
     border-radius: 8px;
+    border: 1px solid var(--border-color);
 }
-
-footer h2 {
-    color: var(--white);
-    font-size: 2rem;
-    line-height: 1.5;
+.explanation-box h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
 }
-
-/* 印刷時の設定 */
-@media print {
-    body {
-        background-color: var(--white);
-        padding: 0;
-    }
-    .page-container {
-        box-shadow: none;
-        border-radius: 0;
-        width: 100%;
-        max-width: 100%;
-        min-height: auto;
-        padding: 1cm;
-    }
-    header h1, .metric-text h2, footer h2 {
-        color: #000 !important; /* 印刷用に黒文字に */
-    }
-    footer {
-        background-color: #ddd !important;
-    }
+.explanation-box p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
 }
 
 /* スマートフォン用の調整 */
 @media (max-width: 768px) {
     body { padding: 0; }
-    .page-container {
-        width: 100%;
-        min-height: 100vh;
-        border-radius: 0;
-        padding: 25px;
-    }
-    header h1 { font-size: 1.8rem; }
-    .metric-text h2 { font-size: 2rem; }
-    .metric-text h2 span { font-size: 2.5rem; }
-    .visitor-types { flex-direction: column; }
-    footer h2 { font-size: 1.5rem; }
+    .page-container { width: 100%; border-radius: 0; padding: 25px 20px; }
+    header h1 { font-size: 1.6rem; }
+    section h2 { font-size: 1.3rem; }
+
+    .result-text { font-size: 1.8rem; }
+    .result-number { font-size: 3.5rem; }
+    .result-number .unit { font-size: 1.8rem; }
 }
