@@ -199,6 +199,30 @@ header p {
     color: #555;
 }
 
+/* === ▼▼▼ ここから追加 ▼▼▼ === */
+/* 最後の呼びかけセクション */
+.final-cta {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+.final-cta .main-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.7;
+    margin: 0 0 0.5rem 0;
+}
+.final-cta .sub-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0;
+}
+/* === ▲▲▲ ここまで追加 ▲▲▲ === */
+
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     body { padding: 1.5rem 0.5rem; }
